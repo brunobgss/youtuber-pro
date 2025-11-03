@@ -7,7 +7,9 @@ type Row = {
   title?: string;
 };
 
-const statusClass: Record<Row['status'], string> = {
+type StatusType = 'queued' | 'processing' | 'success' | 'fail';
+
+const statusClass: Record<StatusType, string> = {
   queued: 'bg-yellow-100 text-yellow-700',
   processing: 'bg-blue-100 text-blue-700',
   success: 'bg-green-100 text-green-700',
@@ -30,12 +32,12 @@ export default function UploadHistoryTable({ rows = [] as Row[] }) {
           </tr>
         </thead>
         <tbody>
-          {(rows.length ? rows : [{ video: '-', channel: '-', status: 'queued', date: '-', videoId: '-', title: '-' }]).map((r, i) => (
+          {(rows.length ? rows : [{ video: '-', channel: '-', status: 'queued' as const, date: '-', videoId: '-', title: '-' }]).map((r, i) => (
             <tr key={i} className="odd:bg-gray-50">
               <td className="p-2">{r.video}</td>
               <td className="p-2">{r.channel}</td>
               <td className="p-2">
-                <span className={`rounded-full px-2 py-1 text-xs font-medium ${statusClass[r.status]}`}>{r.status}</span>
+                <span className={`rounded-full px-2 py-1 text-xs font-medium ${statusClass[r.status as StatusType] || 'bg-gray-100 text-gray-700'}`}>{r.status}</span>
               </td>
               <td className="p-2">{r.date}</td>
               <td className="p-2">{r.videoId || '-'}</td>
