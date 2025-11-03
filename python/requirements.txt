@@ -1,0 +1,22 @@
+google-api-python-client==2.149.0
+google-auth-oauthlib==1.2.1
+gTTS==2.5.3
+moviepy==1.0.3
+Pillow>=10.4.0
+numpy>=2.1.0
+# PySceneDetect==0.6.4  # Opcional, pode não funcionar no Python 3.13
+requests==2.32.3
+# IA Texto
+llama-cpp-python>=0.2.57
+# IA Imagem
+torch>=2.3.0
+transformers>=4.40.0
+diffusers>=0.28.0
+accelerate>=0.29.0
+# IA Texto-voz offline
+# TTS>=0.22.0  # Não compatível com Python 3.13 - use gTTS (online) ou instale Python 3.10-3.11
+# GPU speedup para diffusers (opcional, comentado - pode falhar no Windows)
+# xformers==0.0.25
+
+
+
