@@ -9,8 +9,14 @@ export default {
     extend: {
       colors: {
         brand: {
-          DEFAULT: '#3b82f6',
-          hover: '#2563eb',
+          DEFAULT: '#FF0000',
+          hover: '#CC0000',
+          light: '#FF3333',
+        },
+        youtube: {
+          DEFAULT: '#FF0000',
+          dark: '#CC0000',
+          light: '#FF3333',
         },
         status: {
           authorized: '#22c55e',
@@ -20,7 +26,9 @@ export default {
         },
       },
       boxShadow: {
-        card: '0 2px 10px rgba(0,0,0,0.06)'
+        card: '0 2px 8px rgba(0,0,0,0.1)',
+        'card-hover': '0 4px 12px rgba(0,0,0,0.15)',
+        'youtube': '0 2px 4px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.05)',
       }
     },
   },
