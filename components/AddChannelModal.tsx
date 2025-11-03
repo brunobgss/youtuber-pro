@@ -67,65 +67,65 @@ export default function AddChannelModal({ open, onClose, onSuccess }: Props) {
 
   return (
     <Modal open={open} title="Adicionar Novo Canal" onClose={handleClose}>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Nome do Canal <span className="text-red-500">*</span>
+          <label className="block text-sm font-semibold text-gray-300 mb-2">
+            Nome do Canal <span className="text-brand">*</span>
           </label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
             placeholder="Ex: Meu Canal Principal"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            E-mail da Conta (Google) <span className="text-red-500">*</span>
+          <label className="block text-sm font-semibold text-gray-300 mb-2">
+            E-mail da Conta (Google) <span className="text-brand">*</span>
           </label>
           <input
             type="email"
             value={accountEmail}
             onChange={(e) => setAccountEmail(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
             placeholder="exemplo@gmail.com"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-semibold text-gray-300 mb-2">
             Google Authenticator (E-mail da conta)
           </label>
           <input
             type="email"
             value={authenticatorEmail}
             onChange={(e) => setAuthenticatorEmail(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
             placeholder="exemplo@email.com (onde está o código do authenticator)"
           />
-          <p className="mt-1 text-xs text-gray-500">E-mail onde está configurado o Google Authenticator</p>
+          <p className="mt-1.5 text-xs text-gray-400">E-mail onde está configurado o Google Authenticator</p>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-semibold text-gray-300 mb-2">
             E-mail de Recuperação
           </label>
           <input
             type="email"
             value={recoveryEmail}
             onChange={(e) => setRecoveryEmail(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
             placeholder="recuperacao@email.com"
           />
-          <p className="mt-1 text-xs text-gray-500">E-mail de recuperação cadastrado neste canal</p>
+          <p className="mt-1.5 text-xs text-gray-400">E-mail de recuperação cadastrado neste canal</p>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-semibold text-gray-300 mb-2">
             Senha do Canal
           </label>
           <div className="relative">
@@ -133,13 +133,13 @@ export default function AddChannelModal({ open, onClose, onSuccess }: Props) {
               type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2.5 pr-10 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+              className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 pr-10 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
               placeholder="Senha da conta Google"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand transition-colors"
             >
               {showPassword ? (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,10 +153,10 @@ export default function AddChannelModal({ open, onClose, onSuccess }: Props) {
               )}
             </button>
           </div>
-          <p className="mt-1 text-xs text-yellow-600">⚠️ A senha será armazenada como texto. Use apenas em ambiente seguro.</p>
+          <p className="mt-1.5 text-xs text-yellow-400">⚠️ A senha será armazenada como texto. Use apenas em ambiente seguro.</p>
         </div>
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+        <div className="flex justify-end gap-3 pt-5 border-t border-gray-700/50">
           <button 
             type="button" 
             onClick={handleClose} 

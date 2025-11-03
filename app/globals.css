@@ -4,19 +4,37 @@
 
 /* Layout helpers */
 .btn {
-  @apply inline-flex items-center justify-center rounded-lg bg-brand px-4 py-2 text-white font-medium transition-all hover:bg-brand-hover hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply inline-flex items-center justify-center rounded-lg bg-gradient-to-b from-brand to-brand-hover px-4 py-2.5 text-white font-semibold shadow-[0_4px_0_0_#CC0000,0_2px_8px_rgba(255,0,0,0.3)] transition-all hover:shadow-[0_2px_0_0_#CC0000,0_1px_4px_rgba(255,0,0,0.4)] hover:translate-y-0.5 active:shadow-[0_1px_0_0_#CC0000] active:translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-y-0;
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center rounded-lg bg-gray-100 px-4 py-2 text-gray-700 font-medium transition-all hover:bg-gray-200 hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply inline-flex items-center justify-center rounded-lg bg-gradient-to-b from-gray-700 to-gray-800 px-4 py-2.5 text-white font-semibold shadow-[0_4px_0_0_#1f2937,0_2px_8px_rgba(0,0,0,0.3)] transition-all hover:shadow-[0_2px_0_0_#1f2937,0_1px_4px_rgba(0,0,0,0.4)] hover:translate-y-0.5 hover:from-gray-600 hover:to-gray-700 active:shadow-[0_1px_0_0_#1f2937] active:translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-green {
+  @apply inline-flex items-center justify-center rounded-lg bg-gradient-to-b from-green-600 to-green-700 px-4 py-2.5 text-white font-semibold shadow-[0_4px_0_0_#047857,0_2px_8px_rgba(34,197,94,0.3)] transition-all hover:shadow-[0_2px_0_0_#047857,0_1px_4px_rgba(34,197,94,0.4)] hover:translate-y-0.5 active:shadow-[0_1px_0_0_#047857] active:translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .card {
-  @apply rounded-xl border border-gray-200 bg-white p-6 shadow-card transition-all hover:shadow-card-hover;
+  @apply rounded-xl border border-gray-700/50 bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-6 shadow-[0_8px_16px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.05)] transition-all hover:shadow-[0_12px_24px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-gray-600/60;
 }
 
 .card-youtube {
-  @apply rounded-xl border border-gray-200 bg-white p-6 shadow-youtube transition-all hover:shadow-card-hover;
+  @apply rounded-xl border border-gray-700/50 bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-6 shadow-[0_8px_16px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.05)] transition-all hover:shadow-[0_12px_24px_rgba(255,0,0,0.2),0_8px_16px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-brand/30;
+}
+
+/* Efeito de aço escovado no fundo */
+.bg-steel {
+  background: 
+    linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.03) 2px,
+      rgba(255, 255, 255, 0.03) 4px
+    );
+  background-size: 100% 100%, 8px 8px;
 }
 
 

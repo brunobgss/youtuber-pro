@@ -108,35 +108,38 @@ export default function Page() {
   if (loading) {
     return (
       <main className="flex items-center justify-center min-h-[400px]">
-        <p className="text-gray-500">Carregando...</p>
+        <div className="text-center">
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-brand border-r-transparent mb-3"></div>
+          <p className="text-gray-400">Carregando...</p>
+        </div>
       </main>
     );
   }
 
   return (
     <main className="space-y-6">
-      <div className="mb-8 rounded-xl bg-white px-6 py-5 shadow-youtube">
+      <div className="mb-8 card-youtube">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Meus Canais</h2>
-            <p className="text-gray-500 text-sm mt-1">Gerencie seus canais do YouTube</p>
+            <h2 className="text-2xl font-bold text-white">Meus Canais</h2>
+            <p className="text-gray-400 text-sm mt-1">Gerencie seus canais do YouTube</p>
           </div>
           <div className="flex gap-3">
             <button 
               onClick={() => setAddChannelModalOpen(true)} 
-              className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-green-700 hover:shadow-md"
+              className="btn-green text-sm"
             >
               + Canal
             </button>
             <button 
               onClick={() => setUploadModalOpen(true)} 
-              className="btn-secondary"
+              className="btn-secondary text-sm"
             >
               Adicionar Vídeo
             </button>
             <button 
               onClick={() => setGenerateModalOpen(true)} 
-              className="btn"
+              className="btn text-sm"
             >
               Gerar Vídeo
             </button>
@@ -147,13 +150,13 @@ export default function Page() {
       <section className="mb-8">
         {channels.length === 0 ? (
           <div className="card-youtube text-center py-12">
-            <div className="text-gray-400 mb-4">
+            <div className="text-gray-500 mb-4">
               <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
             </div>
-            <p className="text-gray-600 font-medium mb-2">Nenhum canal cadastrado</p>
-            <p className="text-gray-500 text-sm mb-4">Adicione seu primeiro canal para começar</p>
+            <p className="text-white font-semibold mb-2">Nenhum canal cadastrado</p>
+            <p className="text-gray-400 text-sm mb-4">Adicione seu primeiro canal para começar</p>
             <button 
               onClick={() => setAddChannelModalOpen(true)}
               className="btn"
@@ -185,10 +188,10 @@ export default function Page() {
       <section className="card-youtube mb-8">
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-bold text-gray-900">Histórico de Uploads</h3>
-            <p className="text-sm text-gray-500 mt-1">Acompanhe o status dos seus vídeos</p>
+            <h3 className="text-lg font-bold text-white">Histórico de Uploads</h3>
+            <p className="text-sm text-gray-400 mt-1">Acompanhe o status dos seus vídeos</p>
           </div>
-          <select className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20">
+          <select className="rounded-lg border border-gray-600 bg-gray-800/90 px-3 py-2 text-sm font-medium text-white focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20">
             <option>Todos</option>
             <option>Authorized</option>
             <option>Pending</option>
@@ -210,34 +213,34 @@ export default function Page() {
 
       <section className="card-youtube">
         <div className="mb-4">
-          <h3 className="text-lg font-bold text-gray-900">Configurações</h3>
-          <p className="text-sm text-gray-500 mt-1">Personalize o comportamento do sistema</p>
+          <h3 className="text-lg font-bold text-white">Configurações</h3>
+          <p className="text-sm text-gray-400 mt-1">Personalize o comportamento do sistema</p>
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <label className="text-sm">
-            <span className="font-medium text-gray-700">Template de Título</span>
+            <span className="font-medium text-gray-300">Template de Título</span>
             <input
-              className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+              className="mt-2 w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
               placeholder="{tema} | {benefício} em {tempo}"
             />
           </label>
           <label className="text-sm">
-            <span className="font-medium text-gray-700">Idioma TTS</span>
-            <select className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20">
+            <span className="font-medium text-gray-300">Idioma TTS</span>
+            <select className="mt-2 w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20">
               <option>pt</option>
               <option>en</option>
             </select>
           </label>
           <label className="text-sm">
-            <span className="font-medium text-gray-700">Watermark padrão</span>
+            <span className="font-medium text-gray-300">Watermark padrão</span>
             <input
-              className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+              className="mt-2 w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
               placeholder="/watermarks/logo.png"
             />
           </label>
           <label className="text-sm">
-            <span className="font-medium text-gray-700">Privacidade padrão</span>
-            <select className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20">
+            <span className="font-medium text-gray-300">Privacidade padrão</span>
+            <select className="mt-2 w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20">
               <option>public</option>
               <option>unlisted</option>
               <option>private</option>

@@ -76,55 +76,55 @@ export default function MetadataEditorModal({
 
   return (
     <Modal open={open} title="Editar Metadata" onClose={onClose}>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <div className="flex items-center justify-between mb-1">
-            <label className="block text-sm font-medium">Título</label>
+          <div className="flex items-center justify-between mb-2">
+            <label className="block text-sm font-semibold text-gray-300">Título</label>
             <button
               type="button"
               onClick={handleGenerate}
               disabled={generating}
-              className="text-xs text-brand hover:underline"
+              className="text-xs font-medium text-brand hover:text-brand-light transition-colors"
             >
-              {generating ? 'Gerando...' : 'Gerar Automaticamente'}
+              {generating ? 'Gerando...' : '✨ Gerar Automaticamente'}
             </button>
           </div>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full rounded-md border border-gray-300 p-2"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Descrição</label>
+          <label className="block text-sm font-semibold text-gray-300 mb-2">Descrição</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={6}
-            className="w-full rounded-md border border-gray-300 p-2"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 resize-none"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Tags (separadas por vírgula)</label>
+          <label className="block text-sm font-semibold text-gray-300 mb-2">Tags (separadas por vírgula)</label>
           <input
             type="text"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
-            className="w-full rounded-md border border-gray-300 p-2"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
             placeholder="tag1, tag2, tag3"
           />
         </div>
 
-        <div className="flex justify-end space-x-2">
-          <button type="button" onClick={onClose} className="btn bg-gray-500 hover:bg-gray-600">
+        <div className="flex justify-end gap-3 pt-4 border-t border-gray-700/50">
+          <button type="button" onClick={onClose} className="btn-secondary px-6 py-2.5">
             Cancelar
           </button>
-          <button type="submit" disabled={loading} className="btn">
+          <button type="submit" disabled={loading} className="btn px-6 py-2.5">
             {loading ? 'Salvando...' : 'Salvar e Confirmar'}
           </button>
         </div>

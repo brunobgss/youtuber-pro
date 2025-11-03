@@ -47,14 +47,14 @@ export default function UploadVideoModal({ open, onClose, onSuccess }: Props) {
 
   return (
     <Modal open={open} title="Adicionar Vídeo" onClose={onClose}>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block text-sm font-medium mb-1">Arquivo de Vídeo</label>
+          <label className="block text-sm font-semibold text-gray-300 mb-2">Arquivo de Vídeo</label>
           <input
             type="file"
             accept="video/*"
             onChange={(e) => setFile(e.target.files?.[0] || null)}
-            className="w-full rounded-md border border-gray-300 p-2"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white file:mr-4 file:rounded-lg file:border-0 file:bg-brand file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-brand-hover transition-colors"
             required
           />
         </div>
@@ -65,27 +65,27 @@ export default function UploadVideoModal({ open, onClose, onSuccess }: Props) {
             id="apply_tts"
             checked={applyTTS}
             onChange={(e) => setApplyTTS(e.target.checked)}
-            className="mr-2"
+            className="mr-3 h-4 w-4 rounded border-gray-600 bg-gray-800 text-brand focus:ring-2 focus:ring-brand/20"
           />
-          <label htmlFor="apply_tts" className="text-sm">Aplicar TTS</label>
+          <label htmlFor="apply_tts" className="text-sm font-medium text-gray-300 cursor-pointer">Aplicar TTS</label>
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Watermark (caminho)</label>
+          <label className="block text-sm font-semibold text-gray-300 mb-2">Watermark (caminho)</label>
           <input
             type="text"
             value={watermarkPath}
             onChange={(e) => setWatermarkPath(e.target.value)}
             placeholder="/watermarks/logo.png"
-            className="w-full rounded-md border border-gray-300 p-2"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
           />
         </div>
 
-        <div className="flex justify-end space-x-2">
-          <button type="button" onClick={onClose} className="btn bg-gray-500 hover:bg-gray-600">
+        <div className="flex justify-end gap-3 pt-4 border-t border-gray-700/50">
+          <button type="button" onClick={onClose} className="btn-secondary px-6 py-2.5">
             Cancelar
           </button>
-          <button type="submit" disabled={loading || !file} className="btn">
+          <button type="submit" disabled={loading || !file} className="btn px-6 py-2.5">
             {loading ? 'Enviando...' : 'Enviar'}
           </button>
         </div>

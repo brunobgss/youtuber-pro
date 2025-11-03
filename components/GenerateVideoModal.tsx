@@ -48,25 +48,25 @@ export default function GenerateVideoModal({ open, onClose, onSuccess }: Props) 
 
   return (
     <Modal open={open} title="Gerar Vídeo" onClose={onClose}>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block text-sm font-medium mb-1">Roteiro/Texto</label>
+          <label className="block text-sm font-semibold text-gray-300 mb-2">Roteiro/Texto</label>
           <textarea
             value={scriptText}
             onChange={(e) => setScriptText(e.target.value)}
             rows={8}
-            className="w-full rounded-md border border-gray-300 p-2"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 resize-none"
             placeholder="Digite o texto que será narrado..."
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Idioma TTS</label>
+          <label className="block text-sm font-semibold text-gray-300 mb-2">Idioma TTS</label>
           <select
             value={lang}
             onChange={(e) => setLang(e.target.value)}
-            className="w-full rounded-md border border-gray-300 p-2"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
           >
             <option value="pt">Português</option>
             <option value="en">Inglês</option>
@@ -74,21 +74,21 @@ export default function GenerateVideoModal({ open, onClose, onSuccess }: Props) 
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Watermark (caminho)</label>
+          <label className="block text-sm font-semibold text-gray-300 mb-2">Watermark (caminho)</label>
           <input
             type="text"
             value={watermarkPath}
             onChange={(e) => setWatermarkPath(e.target.value)}
             placeholder="/watermarks/logo.png"
-            className="w-full rounded-md border border-gray-300 p-2"
+            className="w-full rounded-lg border border-gray-600 bg-gray-800/90 px-4 py-2.5 text-white placeholder-gray-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
           />
         </div>
 
-        <div className="flex justify-end space-x-2">
-          <button type="button" onClick={onClose} className="btn bg-gray-500 hover:bg-gray-600">
+        <div className="flex justify-end gap-3 pt-4 border-t border-gray-700/50">
+          <button type="button" onClick={onClose} className="btn-secondary px-6 py-2.5">
             Cancelar
           </button>
-          <button type="submit" disabled={loading || !scriptText.trim()} className="btn">
+          <button type="submit" disabled={loading || !scriptText.trim()} className="btn px-6 py-2.5">
             {loading ? 'Gerando...' : 'Gerar Vídeo'}
           </button>
         </div>
