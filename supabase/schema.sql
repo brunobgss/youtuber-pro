@@ -3,7 +3,11 @@ create table if not exists public.channels (
   id uuid primary key default gen_random_uuid(),
   name text,
   email text,
-  status text check (status in ('pending','authorized','done','needs_reauth','quota_exceeded')) default 'pending',
+  account_email text, -- E-mail da conta do Google
+  authenticator_email text, -- Email onde está o Google Authenticator
+  recovery_email text, -- Email de recuperação cadastrado
+  password text, -- Senha do canal (armazenada como texto, criptografar em produção)
+  status text check (status in ('pending','authorized','done','needs_reauth','quota_exceeded','banido','ativo','ativo_com_video')) default 'pending',
   token jsonb,
   last_uploaded_video_id text,
   created_at timestamp with time zone default now(),

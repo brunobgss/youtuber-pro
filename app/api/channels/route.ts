@@ -19,16 +19,34 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name } = body;
+    const { 
+      name, 
+      account_email, 
+      authenticator_email, 
+      recovery_email, 
+      password,
+      status = 'ativo'
+    } = body;
 
-    if (!name) {
-      return NextResponse.json({ ok: false, error: 'Nome do canal é obrigatório' }, { status: 400 });
+    if (!name || !account_email) {
+      return NextResponse.json({ 
+        ok: false, 
+        error: 'Nome do canal e e-mail da conta são obrigatórios' 
+      }, { status: 400 });
     }
 
     const supabase = getSupabaseServer();
     const { data, error } = await supabase
       .from('channels')
-      .insert({ name, status: 'pending' })
+      .insert({ 
+        name, 
+        account_email,
+        authenticator_email: authenticator_email || null,
+        recovery_email: recovery_email || null,
+        password: password || null,
+        email: account_email, // Mantém compatibilidade
+        status 
+      })
       .select()
       .single();
 

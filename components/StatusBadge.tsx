@@ -1,4 +1,4 @@
-type Props = { status: 'authorized' | 'pending' | 'needs_reauth' | 'quota_exceeded' | string };
+type Props = { status: 'authorized' | 'pending' | 'needs_reauth' | 'quota_exceeded' | 'banido' | 'ativo' | 'ativo_com_video' | string };
 
 export default function StatusBadge({ status }: Props) {
   const map: Record<string, { bg: string; text: string; label: string }> = {
@@ -6,6 +6,9 @@ export default function StatusBadge({ status }: Props) {
     pending: { bg: 'bg-yellow-100', text: 'text-yellow-700', label: 'Pending' },
     needs_reauth: { bg: 'bg-red-100', text: 'text-red-700', label: 'Needs Reauth' },
     quota_exceeded: { bg: 'bg-orange-100', text: 'text-orange-700', label: 'Quota Exceeded' },
+    banido: { bg: 'bg-red-100', text: 'text-red-700', label: 'Banido' },
+    ativo: { bg: 'bg-green-100', text: 'text-green-700', label: 'Ativo' },
+    ativo_com_video: { bg: 'bg-blue-100', text: 'text-blue-700', label: 'Ativo com Vídeo' },
   };
   const c = map[status] || { bg: 'bg-gray-100', text: 'text-gray-700', label: status };
   return (

@@ -12,8 +12,13 @@ interface Channel {
   id: string;
   name: string | null;
   email: string | null;
+  account_email: string | null;
+  authenticator_email: string | null;
+  recovery_email: string | null;
+  password: string | null;
   status: string | null;
   last_uploaded_video_id: string | null;
+  created_at: string | null;
 }
 
 interface Upload {
@@ -163,12 +168,14 @@ export default function Page() {
                 key={channel.id}
                 id={channel.id}
                 name={channel.name || 'Sem nome'}
-                email={channel.email || undefined}
+                email={channel.account_email || channel.email || undefined}
                 status={channel.status || 'pending'}
                 lastUpload={channel.last_uploaded_video_id || undefined}
+                createdAt={channel.created_at || undefined}
                 onAuthorize={() => handleAuthorize(channel.id)}
                 onReupload={() => {/* TODO: implementar reupload */}}
                 onUpdate={loadData}
+                onStatusChange={() => loadData()}
               />
             ))}
           </div>

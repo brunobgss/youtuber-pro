@@ -7,17 +7,31 @@ type Props = {
   id: string;
   name: string;
   email?: string;
-  status: 'authorized' | 'pending' | 'needs_reauth' | 'quota_exceeded' | string;
+  status: 'authorized' | 'pending' | 'needs_reauth' | 'quota_exceeded' | 'banido' | 'ativo' | 'ativo_com_video' | string;
   lastUpload?: string | null;
+  createdAt?: string;
   onAuthorize?: () => void;
   onReupload?: () => void;
   onUpdate?: () => void;
+  onStatusChange?: (status: string) => void;
 };
 
-export default function ChannelCard({ id, name, email, status, lastUpload, onAuthorize, onReupload, onUpdate }: Props) {
+export default function ChannelCard({ 
+  id, 
+  name, 
+  email, 
+  status, 
+  lastUpload, 
+  createdAt,
+  onAuthorize, 
+  onReupload, 
+  onUpdate,
+  onStatusChange 
+}: Props) {
   const [isEditing, setIsEditing] = useState(false);
   const [editName, setEditName] = useState(name);
   const [isSaving, setIsSaving] = useState(false);
+  const [isChangingStatus, setIsChangingStatus] = useState(false);
 
   const handleSave = async () => {
     if (editName.trim() === name) {
@@ -52,6 +66,44 @@ export default function ChannelCard({ id, name, email, status, lastUpload, onAut
   const handleCancel = () => {
     setEditName(name);
     setIsEditing(false);
+  };
+
+  const handleStatusChange = async (newStatus: string) => {
+    if (newStatus === status) return;
+
+    setIsChangingStatus(true);
+    try {
+      const res = await fetch(`/api/channels/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      });
+
+      const data = await res.json();
+      if (data.ok) {
+        if (onStatusChange) onStatusChange(newStatus);
+        if (onUpdate) onUpdate();
+      } else {
+        alert('Erro ao atualizar status: ' + data.error);
+      }
+    } catch (error) {
+      alert('Erro ao atualizar status do canal');
+    } finally {
+      setIsChangingStatus(false);
+    }
+  };
+
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return '-';
+    try {
+      return new Date(dateString).toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+    } catch {
+      return '-';
+    }
   };
 
   return (
@@ -104,12 +156,38 @@ export default function ChannelCard({ id, name, email, status, lastUpload, onAut
         <StatusBadge status={status} />
       </div>
       
-      <div className="mt-4 pt-4 border-t border-gray-100">
-        <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
-          <span className="text-xs">Último upload:</span>
-          <span className="font-medium">{lastUpload || '-'}</span>
+      <div className="mt-4 pt-4 border-t border-gray-100 space-y-3">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-xs text-gray-500">Status:</span>
+            <select
+              value={status}
+              onChange={(e) => handleStatusChange(e.target.value)}
+              disabled={isChangingStatus}
+              className="rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 disabled:opacity-50"
+            >
+              <option value="banido">Banido</option>
+              <option value="ativo">Ativo</option>
+              <option value="ativo_com_video">Ativo com Vídeo</option>
+              <option value="pending">Pending</option>
+              <option value="authorized">Authorized</option>
+              <option value="needs_reauth">Needs Reauth</option>
+              <option value="quota_exceeded">Quota Exceeded</option>
+            </select>
+          </div>
+          
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-xs text-gray-500">Data de adição:</span>
+            <span className="text-xs font-medium text-gray-700">{formatDate(createdAt)}</span>
+          </div>
+
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-xs text-gray-500">Último upload:</span>
+            <span className="text-xs font-medium text-gray-700">{lastUpload || '-'}</span>
+          </div>
         </div>
-        <div className="flex gap-2">
+
+        <div className="flex gap-2 pt-2">
           <button 
             onClick={onAuthorize} 
             className="flex-1 rounded-lg bg-brand px-3 py-2 text-xs font-medium text-white transition-all hover:bg-brand-hover hover:shadow-md"
