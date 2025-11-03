@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import ChannelCard from '@/components/ChannelCard';
+import ChannelListItem from '@/components/ChannelListItem';
 import UploadHistoryTable from '@/components/UploadHistoryTable';
 import UploadVideoModal from '@/components/UploadVideoModal';
 import GenerateVideoModal from '@/components/GenerateVideoModal';
@@ -165,22 +165,24 @@ export default function Page() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {channels.map((channel) => (
-              <ChannelCard
-                key={channel.id}
-                id={channel.id}
-                name={channel.name || 'Sem nome'}
-                email={channel.account_email || channel.email || undefined}
-                status={channel.status || 'pending'}
-                lastUpload={channel.last_uploaded_video_id || undefined}
-                createdAt={channel.created_at || undefined}
-                onAuthorize={() => handleAuthorize(channel.id)}
-                onReupload={() => {/* TODO: implementar reupload */}}
-                onUpdate={loadData}
-                onStatusChange={() => loadData()}
-              />
-            ))}
+          <div className="card-youtube overflow-hidden">
+            <div className="divide-y divide-gray-700/50">
+              {channels.map((channel) => (
+                <ChannelListItem
+                  key={channel.id}
+                  id={channel.id}
+                  name={channel.name || 'Sem nome'}
+                  email={channel.account_email || channel.email || undefined}
+                  status={channel.status || 'pending'}
+                  lastUpload={channel.last_uploaded_video_id || undefined}
+                  createdAt={channel.created_at || undefined}
+                  onAuthorize={() => handleAuthorize(channel.id)}
+                  onReupload={() => {/* TODO: implementar reupload */}}
+                  onUpdate={loadData}
+                  onStatusChange={() => loadData()}
+                />
+              ))}
+            </div>
           </div>
         )}
       </section>
