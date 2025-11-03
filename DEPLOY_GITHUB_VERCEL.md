@@ -123,22 +123,22 @@ Este guia vai te levar por **TODOS** os passos para fazer deploy no GitHub e Ver
    **A. Supabase:**
    ```
    NEXT_PUBLIC_SUPABASE_URL
-   Valor: https://khbijubfllefqklwsqnb.supabase.co
+   Valor: https://seu-projeto.supabase.co
    
    NEXT_PUBLIC_SUPABASE_ANON_KEY
-   Valor: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtoYmlqdWJmbGxlZnFrbHdzcW5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4MzQ1MzAsImV4cCI6MjA3NzQxMDUzMH0.1o63Fk1Pa04lmozDLx_EalflcO22cNIj8wovpMmjEjI
+   Valor: sua-chave-anon-aqui
    
    SUPABASE_SERVICE_ROLE_KEY
-   Valor: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtoYmlqdWJmbGxlZnFrbHdzcW5iIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTgzNDUzMCwiZXhwIjoyMDc3NDEwNTMwfQ.JJYdYjJzspLPv29psXO6HllTnv97ZDvgFaDtZ1A557s
+   Valor: sua-service-role-key-aqui
    ```
 
    **B. Google OAuth (vamos ajustar depois com a URL da Vercel):**
    ```
    GOOGLE_CLIENT_ID
-   Valor: 910520191655-df75keb4vmlntv564gs2bt40pb3571h.apps.googleusercontent.com
+   Valor: seu-client-id.apps.googleusercontent.com
    
    GOOGLE_CLIENT_SECRET
-   Valor: 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
+   Valor: seu-client-secret-aqui
    
    GOOGLE_REDIRECT_URI
    Valor: https://SEU-PROJETO.vercel.app/api/oauth2/callback
