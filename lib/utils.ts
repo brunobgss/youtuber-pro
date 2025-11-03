@@ -2,8 +2,16 @@
 export async function computeSHA256(file: File | Buffer): Promise<string> {
   if (typeof window !== 'undefined') {
     // Browser: usar Web Crypto API
-    const buffer = file instanceof File ? await file.arrayBuffer() : file;
-    const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+    let arrayBuffer: ArrayBuffer;
+    if (file instanceof File) {
+      arrayBuffer = await file.arrayBuffer();
+    } else {
+      // Se for Buffer (Node.js), converter para ArrayBuffer
+      const buffer = file as Buffer;
+      // Criar um novo ArrayBuffer a partir dos dados do Buffer
+      arrayBuffer = new Uint8Array(buffer).buffer;
+    }
+    const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
   } else {
